@@ -319,12 +319,12 @@ function updateCategory(category,options) {
         }
     }
 }
-function addBlock(blockname,template,color,params,_class,func) {
+function addBlock(blockname,template,color,params,_class,func,skeleton = 'basic') {
     Entry.block[blockname] = {
         color: color.color,
         fontColor: color.font,
         outerLine: color.outline,
-        skeleton: 'basic',
+        skeleton: skeleton,
         statement: [],
         params: params.params,
         events: {},
