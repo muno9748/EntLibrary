@@ -277,3 +277,7 @@ Entry.staticBlocks = [
         ].concat(EntryStatic.DynamicHardwareBlocks),
     }
 ];
+EntryStatic.getAllBlocks = () => {
+    return Entry.staticBlocks;
+}
+Entry.customCategories = [];
