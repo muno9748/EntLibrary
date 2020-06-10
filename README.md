@@ -12,7 +12,7 @@ new Entry.CustomBlock('testblock') // testblock이라는 이름의 블록을 생
         .setAction((sprite, script) => { alert('샍!'); }) // 블록의 동작을
         .attach() // Entry객체에 추가
 new Entry.CustomCategory('testcategory') // testcategory라는 카테고리 생성
-        .addBlock('textblock') // testblock이라는 블록을 카테고리에 넣음
+        .addBlock('testblock') // testblock이라는 블록을 카테고리에 넣음
         .setText('테스트 카테고리') // 카테고리의 보이는 텍스트 설정
         .mutate() // 카테고리 업데이트 ( 시간이 좀 걸릴수 있음 )
 ```
