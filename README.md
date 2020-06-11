@@ -17,7 +17,7 @@ new Entry.CustomCategory('testcategory') // testcategory라는 카테고리 생�
         .setText('테스트 카테고리') // 카테고리의 보이는 텍스트 설정
         .mutate() // 카테고리 업데이트 ( 시간이 좀 걸릴수 있음 )
 ```
-```
+```js
 /* 기본 카테고리에 블록 추가하기 */
 new Entry.CustomBlock('testblock') // testblock이라는 이름의 블록을 생성
         .setTemplate('테스트 블록입니다.') // 템플릿 ( 블록의 보여지는 글자 )를 설정
