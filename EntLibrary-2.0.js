@@ -380,48 +380,50 @@ Entry.CustomBlock = class EntryBlock {
         mutate() {
                 console.log('Updating Category...');
                 this.attach();
-                Entry.Mutator.mutate(this.type, { template: this.meta_.template, params: this.meta_.params }, this.meta_);
-                Entry.playground.mainWorkspace.blockMenu.clearCategory();
-                Entry.playground.mainWorkspace.blockMenu._generateCategoryView([
-                        { category: 'start', visible: true },
-                        { category: 'flow', visible: true },
-                        { category: 'moving', visible: true },
-                        { category: 'looks', visible: true },
-                        { category: 'brush', visible: true },
-                        { category: 'text', visible: true },
-                        { category: 'sound', visible: true },
-                        { category: 'judgement', visible: true },
-                        { category: 'calc', visible: true },
-                        { category: 'variable', visible: true },
-                        { category: 'func', visible: true },
-                        { category: 'analysis', visible: true },
-                        { category: 'ai_utilize', visible: true },
-                        { category: 'expansion', visible: true },
-                ].concat(
-                        ...(Entry.customCategories.map(l => ({ category: l, visible: true })))
-                ).concat({ category: 'arduino', visible:true }));
-                for(let i = 0; i < $('.entryCategoryElementWorkspace').length; i++) {
-                        if(!($($('.entryCategoryElementWorkspace')[i]).attr('id') == "entryCategorytext")) {
-                                $($('.entryCategoryElementWorkspace')[i]).attr('class','entryCategoryElementWorkspace');
+                if(!window.useWebGL) {
+                        Entry.Mutator.mutate(this.type, { template: this.meta_.template, params: this.meta_.params }, this.meta_);
+                        Entry.playground.mainWorkspace.blockMenu.clearCategory();
+                        Entry.playground.mainWorkspace.blockMenu._generateCategoryView([
+                                { category: 'start', visible: true },
+                                { category: 'flow', visible: true },
+                                { category: 'moving', visible: true },
+                                { category: 'looks', visible: true },
+                                { category: 'brush', visible: true },
+                                { category: 'text', visible: true },
+                                { category: 'sound', visible: true },
+                                { category: 'judgement', visible: true },
+                                { category: 'calc', visible: true },
+                                { category: 'variable', visible: true },
+                                { category: 'func', visible: true },
+                                { category: 'analysis', visible: true },
+                                { category: 'ai_utilize', visible: true },
+                                { category: 'expansion', visible: true },
+                        ].concat(
+                                ...(Entry.customCategories.map(l => ({ category: l, visible: true })))
+                        ).concat({ category: 'arduino', visible:true }));
+                        for(let i = 0; i < $('.entryCategoryElementWorkspace').length; i++) {
+                                if(!($($('.entryCategoryElementWorkspace')[i]).attr('id') == "entryCategorytext")) {
+                                        $($('.entryCategoryElementWorkspace')[i]).attr('class','entryCategoryElementWorkspace');
+                                }
                         }
-                }
-                Entry.playground.blockMenu._categoryData = EntryStatic.getAllBlocks();
-                Entry.playground.blockMenu._generateCategoryCodes([
-                        'start',
-                        'flow',
-                        'moving',
-                        'looks',
-                        'brush',
-                        'text',
-                        'sound',
-                        'judgement',
-                        'calc',
-                        'variable',
-                        'func',
-                        'analysis',
-                        'ai_utilize',
-                        'expansion',
-                ].concat(...(Entry.customCategories)).concat('arduino'));
+                        Entry.playground.blockMenu._categoryData = EntryStatic.getAllBlocks();
+                        Entry.playground.blockMenu._generateCategoryCodes([
+                                'start',
+                                'flow',
+                                'moving',
+                                'looks',
+                                'brush',
+                                'text',
+                                'sound',
+                                'judgement',
+                                'calc',
+                                'variable',
+                                'func',
+                                'analysis',
+                                'ai_utilize',
+                                'expansion',
+                        ].concat(...(Entry.customCategories)).concat('arduino'));
+                } else console.warn('Working on play mode... This will have some bugs');
                 return this;
         }
 }
@@ -429,48 +431,50 @@ Entry.addBlockToDefaultCategory = (category, ...blocks) => {
         Entry.staticBlocks.find(c => c.category == category).blocks.push(...blocks);
         return {mutate() {
                 console.log('Updating Category...');
-                Entry.playground.mainWorkspace.blockMenu.clearCategory();
-                Entry.playground.mainWorkspace.blockMenu._generateCategoryView([
-                        { category: 'start', visible: true },
-                        { category: 'flow', visible: true },
-                        { category: 'moving', visible: true },
-                        { category: 'looks', visible: true },
-                        { category: 'brush', visible: true },
-                        { category: 'text', visible: true },
-                        { category: 'sound', visible: true },
-                        { category: 'judgement', visible: true },
-                        { category: 'calc', visible: true },
-                        { category: 'variable', visible: true },
-                        { category: 'func', visible: true },
-                        { category: 'analysis', visible: true },
-                        { category: 'ai_utilize', visible: true },
-                        { category: 'expansion', visible: true },
-                ].concat(
-                        ...(Entry.customCategories.map(l => ({ category: l, visible: true })))
-                ).concat({ category: 'arduino', visible:true }));
-                for(let i = 0; i < $('.entryCategoryElementWorkspace').length; i++) {
-                        if(!($($('.entryCategoryElementWorkspace')[i]).attr('id') == "entryCategorytext")) {
-                                $($('.entryCategoryElementWorkspace')[i]).attr('class','entryCategoryElementWorkspace');
+                if(!window.useWebGL) {
+                        Entry.playground.mainWorkspace.blockMenu.clearCategory();
+                        Entry.playground.mainWorkspace.blockMenu._generateCategoryView([
+                                { category: 'start', visible: true },
+                                { category: 'flow', visible: true },
+                                { category: 'moving', visible: true },
+                                { category: 'looks', visible: true },
+                                { category: 'brush', visible: true },
+                                { category: 'text', visible: true },
+                                { category: 'sound', visible: true },
+                                { category: 'judgement', visible: true },
+                                { category: 'calc', visible: true },
+                                { category: 'variable', visible: true },
+                                { category: 'func', visible: true },
+                                { category: 'analysis', visible: true },
+                                { category: 'ai_utilize', visible: true },
+                                { category: 'expansion', visible: true },
+                        ].concat(
+                                ...(Entry.customCategories.map(l => ({ category: l, visible: true })))
+                        ).concat({ category: 'arduino', visible:true }));
+                        for(let i = 0; i < $('.entryCategoryElementWorkspace').length; i++) {
+                                if(!($($('.entryCategoryElementWorkspace')[i]).attr('id') == "entryCategorytext")) {
+                                        $($('.entryCategoryElementWorkspace')[i]).attr('class','entryCategoryElementWorkspace');
+                                }
                         }
-                }
-                Entry.playground.blockMenu._categoryData = EntryStatic.getAllBlocks();
-                Entry.playground.blockMenu._generateCategoryCodes([
-                        'start',
-                        'flow',
-                        'moving',
-                        'looks',
-                        'brush',
-                        'text',
-                        'sound',
-                        'judgement',
-                        'calc',
-                        'variable',
-                        'func',
-                        'analysis',
-                        'ai_utilize',
-                        'expansion',
-                ].concat(...(Entry.customCategories)).concat('arduino'));
-                Entry.getMainWS().blockMenu.view.find('.entryCategoryElementWorkspace')[0].click();
+                        Entry.playground.blockMenu._categoryData = EntryStatic.getAllBlocks();
+                        Entry.playground.blockMenu._generateCategoryCodes([
+                                'start',
+                                'flow',
+                                'moving',
+                                'looks',
+                                'brush',
+                                'text',
+                                'sound',
+                                'judgement',
+                                'calc',
+                                'variable',
+                                'func',
+                                'analysis',
+                                'ai_utilize',
+                                'expansion',
+                        ].concat(...(Entry.customCategories)).concat('arduino'));
+                        Entry.getMainWS().blockMenu.view.find('.entryCategoryElementWorkspace')[0].click();
+                } else console.warn('Working on play mode... This will have some bugs');
         }};
 }
 Entry.CustomCategory = class EntryCategory {
@@ -511,64 +515,66 @@ Entry.CustomCategory = class EntryCategory {
         }
 
         mutate() {
-                $(`#EntLibrary_Category_${this.meta_.cssID}`).remove();
-                $('head').append(`<style id="EntLibrary_Category_${this.meta_.cssID}">
-                        #entryCategory${this.categoryName} {
-                                background-repeat: no-repeat;
-                                background-color: ${this.meta_.back[0].color};
-                                background-image: url(${this.meta_.back[0].image});
-                                border-color: ${this.meta_.back[0].color};
-                        }
-                        .entrySelectedCategory#entryCategory${this.categoryName} {
-                                background-repeat: no-repeat !important;
-                                background-color: ${this.meta_.back[1].color} !important;
-                                background-image: url(${this.meta_.back[1].image}) !important;
-                                border-color: ${this.meta_.back[1].color} !important;
-                        }
-                </style>`);
                 console.log('Updating Category...');
-                Entry.playground.mainWorkspace.blockMenu.clearCategory();
-                Entry.playground.mainWorkspace.blockMenu._generateCategoryView([
-                        { category: 'start', visible: true },
-                        { category: 'flow', visible: true },
-                        { category: 'moving', visible: true },
-                        { category: 'looks', visible: true },
-                        { category: 'brush', visible: true },
-                        { category: 'text', visible: true },
-                        { category: 'sound', visible: true },
-                        { category: 'judgement', visible: true },
-                        { category: 'calc', visible: true },
-                        { category: 'variable', visible: true },
-                        { category: 'func', visible: true },
-                        { category: 'analysis', visible: true },
-                        { category: 'ai_utilize', visible: true },
-                        { category: 'expansion', visible: true },
-                ].concat(
-                        ...(Entry.customCategories.map(l => ({ category: l, visible: true })))
-                ).concat({ category: 'arduino', visible:true }));
-                for(let i = 0; i < $('.entryCategoryElementWorkspace').length; i++) {
-                        if(!($($('.entryCategoryElementWorkspace')[i]).attr('id') == "entryCategorytext")) {
-                                $($('.entryCategoryElementWorkspace')[i]).attr('class','entryCategoryElementWorkspace');
+                if(!window.useWebGL) {
+                        $(`#EntLibrary_Category_${this.meta_.cssID}`).remove();
+                        $('head').append(`<style id="EntLibrary_Category_${this.meta_.cssID}">
+                                #entryCategory${this.categoryName} {
+                                        background-repeat: no-repeat;
+                                        background-color: ${this.meta_.back[0].color};
+                                        background-image: url(${this.meta_.back[0].image});
+                                        border-color: ${this.meta_.back[0].color};
+                                }
+                                .entrySelectedCategory#entryCategory${this.categoryName} {
+                                        background-repeat: no-repeat !important;
+                                        background-color: ${this.meta_.back[1].color} !important;
+                                        background-image: url(${this.meta_.back[1].image}) !important;
+                                        border-color: ${this.meta_.back[1].color} !important;
+                                }
+                        </style>`);
+                        Entry.playground.mainWorkspace.blockMenu.clearCategory();
+                        Entry.playground.mainWorkspace.blockMenu._generateCategoryView([
+                                { category: 'start', visible: true },
+                                { category: 'flow', visible: true },
+                                { category: 'moving', visible: true },
+                                { category: 'looks', visible: true },
+                                { category: 'brush', visible: true },
+                                { category: 'text', visible: true },
+                                { category: 'sound', visible: true },
+                                { category: 'judgement', visible: true },
+                                { category: 'calc', visible: true },
+                                { category: 'variable', visible: true },
+                                { category: 'func', visible: true },
+                                { category: 'analysis', visible: true },
+                                { category: 'ai_utilize', visible: true },
+                                { category: 'expansion', visible: true },
+                        ].concat(
+                                ...(Entry.customCategories.map(l => ({ category: l, visible: true })))
+                        ).concat({ category: 'arduino', visible:true }));
+                        for(let i = 0; i < $('.entryCategoryElementWorkspace').length; i++) {
+                                if(!($($('.entryCategoryElementWorkspace')[i]).attr('id') == "entryCategorytext")) {
+                                        $($('.entryCategoryElementWorkspace')[i]).attr('class','entryCategoryElementWorkspace');
+                                }
                         }
-                }
-                Entry.playground.blockMenu._categoryData = EntryStatic.getAllBlocks();
-                Entry.playground.blockMenu._generateCategoryCodes([
-                        'start',
-                        'flow',
-                        'moving',
-                        'looks',
-                        'brush',
-                        'text',
-                        'sound',
-                        'judgement',
-                        'calc',
-                        'variable',
-                        'func',
-                        'analysis',
-                        'ai_utilize',
-                        'expansion',
-                ].concat(...(Entry.customCategories)).concat('arduino'));
-                $(`#entryCategory${this.categoryName}`).text(this.meta_.text);
+                        Entry.playground.blockMenu._categoryData = EntryStatic.getAllBlocks();
+                        Entry.playground.blockMenu._generateCategoryCodes([
+                                'start',
+                                'flow',
+                                'moving',
+                                'looks',
+                                'brush',
+                                'text',
+                                'sound',
+                                'judgement',
+                                'calc',
+                                'variable',
+                                'func',
+                                'analysis',
+                                'ai_utilize',
+                                'expansion',
+                        ].concat(...(Entry.customCategories)).concat('arduino'));
+                        $(`#entryCategory${this.categoryName}`).text(this.meta_.text);
+                } else console.warn('Working on play mode... This will have some bugs');
                 return this;
         }
 }
