@@ -1,6 +1,4 @@
-console.log('%cEntLibrary 원작자 \n\n%c %c\n muno9748', 'font-size: 1.2rem; font-family: sans-serif;', 'background: url(https://avatars1.githubusercontent.com/u/58895791?s=64&v=4); padding-right: 58px; padding-top: 48px; margin-left: 15px;', 'font-family: sans-serif; font-size: 1.1rem;');
-console.log('Repository: https://github.com/muno9748/EntLibrary');
-console.log('SourceCode: https://github.com/muno9748/EntLibrary/blob/master/EntLibrary-2.0.js');
+console.log('%c%c %c\n muno9748%c\n\nRepository: https://github.com/muno9748/EntLibrary\nSourceCode: https://github.com/muno9748/EntLibrary/blob/master/EntLibrary-2.0.js\n', 'font-size: 1.2rem; font-family: sans-serif;', 'background: url(https://avatars1.githubusercontent.com/u/58895791?s=64&v=4); padding-right: 58px; padding-top: 48px; margin-left: 15px;', 'font-family: sans-serif; font-size: 1.1rem;','');
 console.log(`
 %cMIT License
 
@@ -23,7 +21,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-`, 'color: red; font-size: 1.2rem;');
+`, 'color: red; font-size: 1.1rem; text-shadow: 1px 0 black, -1px 0 black;');
 Entry.staticBlocks = [
     {
         category: 'start',
@@ -324,7 +322,7 @@ Entry.CustomBlock = class EntryBlock {
                         },
                         paramsKeyMap: {},
                         class: 'default',
-                        func: () => {console.log('%cError! %cBlock\'s Action is not defined!', 'color: red; font-size: 1.2rem;', 'color: white; font-size: 1.2rem;');},
+                        func: () => {console.warn('Error! Block\'s Action is not defined!');},
                         template: 'no-template-created'
                 };
         }
@@ -380,7 +378,7 @@ Entry.CustomBlock = class EntryBlock {
         }
 
         mutate() {
-                console.log('Updating Category.. this will take some time\n카테고리를 업데이트 중입니다... 시간이 조금 걸릴수 있습니다');
+                console.log('Updating Category...');
                 this.attach();
                 Entry.Mutator.mutate(this.type, { template: this.meta_.template, params: this.meta_.params }, this.meta_);
                 Entry.playground.mainWorkspace.blockMenu.clearCategory();
@@ -427,6 +425,54 @@ Entry.CustomBlock = class EntryBlock {
                 return this;
         }
 }
+Entry.addBlockToDefaultCategory = (category, ...blocks) => {
+        Entry.staticBlocks.find(c => c.category == category).blocks.push(...blocks);
+        return {mutate() {
+                console.log('Updating Category...');
+                Entry.playground.mainWorkspace.blockMenu.clearCategory();
+                Entry.playground.mainWorkspace.blockMenu._generateCategoryView([
+                        { category: 'start', visible: true },
+                        { category: 'flow', visible: true },
+                        { category: 'moving', visible: true },
+                        { category: 'looks', visible: true },
+                        { category: 'brush', visible: true },
+                        { category: 'text', visible: true },
+                        { category: 'sound', visible: true },
+                        { category: 'judgement', visible: true },
+                        { category: 'calc', visible: true },
+                        { category: 'variable', visible: true },
+                        { category: 'func', visible: true },
+                        { category: 'analysis', visible: true },
+                        { category: 'ai_utilize', visible: true },
+                        { category: 'expansion', visible: true },
+                ].concat(
+                        ...(Entry.customCategories.map(l => ({ category: l, visible: true })))
+                ).concat({ category: 'arduino', visible:true }));
+                for(let i = 0; i < $('.entryCategoryElementWorkspace').length; i++) {
+                        if(!($($('.entryCategoryElementWorkspace')[i]).attr('id') == "entryCategorytext")) {
+                                $($('.entryCategoryElementWorkspace')[i]).attr('class','entryCategoryElementWorkspace');
+                        }
+                }
+                Entry.playground.blockMenu._categoryData = EntryStatic.getAllBlocks();
+                Entry.playground.blockMenu._generateCategoryCodes([
+                        'start',
+                        'flow',
+                        'moving',
+                        'looks',
+                        'brush',
+                        'text',
+                        'sound',
+                        'judgement',
+                        'calc',
+                        'variable',
+                        'func',
+                        'analysis',
+                        'ai_utilize',
+                        'expansion',
+                ].concat(...(Entry.customCategories)).concat('arduino'));
+                Entry.getMainWS().blockMenu.view.find('.entryCategoryElementWorkspace')[0].click();
+        }};
+}
 Entry.CustomCategory = class EntryCategory {
         constructor(name = 'undefined') {
                 this.categoryName = name;
@@ -441,8 +487,8 @@ Entry.CustomCategory = class EntryCategory {
                 Entry.customCategories.push(name);
         }
 
-        addBlock(blockType) {
-                Entry.staticBlocks.find(c => c.category == this.categoryName).blocks.push(blockType);
+        addBlock(...blockType) {
+                Entry.staticBlocks.find(c => c.category == this.categoryName).blocks.push(...blockType);
                 return this;
         }
 
@@ -480,7 +526,7 @@ Entry.CustomCategory = class EntryCategory {
                                 border-color: ${this.meta_.back[1].color} !important;
                         }
                 </style>`);
-                console.log('Updating Category.. this will take some time\n카테고리를 업데이트 중입니다... 시간이 조금 걸릴수 있습니다');
+                console.log('Updating Category...');
                 Entry.playground.mainWorkspace.blockMenu.clearCategory();
                 Entry.playground.mainWorkspace.blockMenu._generateCategoryView([
                         { category: 'start', visible: true },
