@@ -344,14 +344,15 @@ Entry.CustomBlock = class EntryBlock {
                 return this;
         }
 
-        setParams(params) {
+        setParams(...params) {
+                if(params.length == 1 && typeof params[0] == 'object') params = params[0];
                 this.meta_.params = [];
                 this.meta_.def.params = [];
                 this.meta_.paramsKeyMap = {};
                 params.forEach((param,i) => {
                         this.meta_.params.push(param.data);
-                        this.meta_.def.params.push(params.def || null);
-                        this.meta_.paramsKeyMap[this.meta_.name] = i;
+                        this.meta_.def.params.push(param.def || null);
+                        param.name && (this.meta_.paramsKeyMap[param.name] = i);
                 });
                 return this;
         }
