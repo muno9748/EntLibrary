@@ -1,27 +1,6 @@
 console.log('%c%c %c\n muno9748%c\n\nRepository: https://github.com/muno9748/EntLibrary\nSourceCode: https://github.com/muno9748/EntLibrary/blob/master/EntLibrary-2.0.js\n', 'font-size: 1.2rem; font-family: sans-serif;', 'background: url(https://avatars1.githubusercontent.com/u/58895791?s=64&v=4); padding-right: 58px; padding-top: 48px; margin-left: 15px;', 'font-family: sans-serif; font-size: 1.1rem;','');
-console.log(`
-%cMIT License
-
-Copyright (c) 2020 muno9748
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-`, 'color: red; font-size: 1.1rem; text-shadow: 1px 0 black, -1px 0 black;');
+console.log(`%cEntLibrary 2.0 is following MIT License.
+Copyright (c) 2020 muno9748`, 'color: red; font-size: 1.1rem;');
 Entry.staticBlocks = [
     {
         category: 'start',
@@ -333,9 +312,9 @@ Entry.CustomBlock = class EntryBlock {
         }
 
         setColor(_default, darken, text) {
-                _default && /#[0-9a-fA-F]{6}/.test(_default) && (this.meta_.color = _default);
-                darken && /#[0-9a-fA-F]{6}/.test(darken) && (this.meta_.outerLine = darken);
-                text && /#[0-9a-fA-F]{6}/.test(text) && (this.meta_.fontColor = text);
+                _default && (/#[0-9a-fA-F]{6}/.test(_default) || color == "transparent") && (this.meta_.color = _default);
+                darken && (/#[0-9a-fA-F]{6}/.test(darken) || color == "transparent") && (this.meta_.outerLine = darken);
+                text && (/#[0-9a-fA-F]{6}/.test(text) || color == "transparent") && (this.meta_.fontColor = text);
                 return this;
         }
 
@@ -345,7 +324,6 @@ Entry.CustomBlock = class EntryBlock {
         }
 
         setParams(...params) {
-                if(params.length == 1 && typeof params[0] == 'object') params = params[0];
                 this.meta_.params = [];
                 this.meta_.def.params = [];
                 this.meta_.paramsKeyMap = {};
@@ -383,7 +361,7 @@ Entry.CustomBlock = class EntryBlock {
                 this.attach();
                 if(!window.useWebGL) {
                         Entry.Mutator.mutate(this.type, { template: this.meta_.template, params: this.meta_.params }, this.meta_);
-                        Entry.playground.mainWorkspace.blockMenu.clearCategory();
+                        Entry.playground.mainWorkspace.blockMenu._clearCategory();
                         Entry.playground.mainWorkspace.blockMenu._generateCategoryView([
                                 { category: 'start', visible: true },
                                 { category: 'flow', visible: true },
@@ -433,7 +411,7 @@ Entry.addBlockToDefaultCategory = (category, ...blocks) => {
         return {mutate() {
                 console.log('Updating Category...');
                 if(!window.useWebGL) {
-                        Entry.playground.mainWorkspace.blockMenu.clearCategory();
+                        Entry.playground.mainWorkspace.blockMenu._clearCategory();
                         Entry.playground.mainWorkspace.blockMenu._generateCategoryView([
                                 { category: 'start', visible: true },
                                 { category: 'flow', visible: true },
@@ -482,7 +460,7 @@ Entry.CustomCategory = class EntryCategory {
         constructor(name = 'undefined') {
                 this.categoryName = name;
                 this.meta_ = { text: 'CustomCategory', cssID: Entry.Utils.generateId(), back: [{
-                        color: '#232323',
+                        color: 'transparent',
                         image: '/lib/entry-js/images/hardware.svg'
                 }, {
                         color: '#00B6B1',
@@ -504,11 +482,11 @@ Entry.CustomCategory = class EntryCategory {
 
         setBackground(type, color, image) {
                 if(type == 'off') {
-                        color && /#[0-9a-fA-F]{6}/.test(color) && (this.meta_[0].color = color);
-                        image && (this.meta_[0].image = image);
+                        color && (/#[0-9a-fA-F]{6}/.test(color) || color == "transparent") && (this.meta_[0].color = color);
+                        image && (this.meta_.back[0].image = image);
                 } else if (type == 'on') {
-                        color && /#[0-9a-fA-F]{6}/.test(color) && (this.meta_[1].color = color);
-                        image && (this.meta_[1].image = image);
+                        color && (/#[0-9a-fA-F]{6}/.test(color) || color == "transparent") && (this.meta_[1].color = color);
+                        image && (this.meta_.back[1].image = image);
                 } else {
                         throw new Error('Invalid type! set to off or on');
                 }
@@ -533,7 +511,7 @@ Entry.CustomCategory = class EntryCategory {
                                         border-color: ${this.meta_.back[1].color} !important;
                                 }
                         </style>`);
-                        Entry.playground.mainWorkspace.blockMenu.clearCategory();
+                        Entry.playground.mainWorkspace.blockMenu._clearCategory();
                         Entry.playground.mainWorkspace.blockMenu._generateCategoryView([
                                 { category: 'start', visible: true },
                                 { category: 'flow', visible: true },
