@@ -36,7 +36,7 @@ import('https://raw.githack.com/muno9748/EntLibrary/master/LibraryCreator.js')
 ```
 > 2.0버전 import
 ```js
-import('https://raw.githack.com/muno9748/EntLibrary/master/EntLibrary-2.0.min.js')
+import('https://rawcdn.githack.com/muno9748/EntLibrary/master/EntLibrary-2.0.min.js')
 ```
 
 # [!] 공지
