@@ -312,9 +312,9 @@ Entry.CustomBlock = class EntryBlock {
         }
 
         setColor(_default, darken, text) {
-                _default && (/#[0-9a-fA-F]{6}/.test(_default) || color == "transparent") && (this.meta_.color = _default);
-                darken && (/#[0-9a-fA-F]{6}/.test(darken) || color == "transparent") && (this.meta_.outerLine = darken);
-                text && (/#[0-9a-fA-F]{6}/.test(text) || color == "transparent") && (this.meta_.fontColor = text);
+                _default && (/#[0-9a-fA-F]{6}/.test(_default) || _default == "transparent") && (this.meta_.color = _default);
+                darken && (/#[0-9a-fA-F]{6}/.test(darken) || darken == "transparent") && (this.meta_.outerLine = darken);
+                text && (/#[0-9a-fA-F]{6}/.test(text) || text == "transparent") && (this.meta_.fontColor = text);
                 return this;
         }
 
